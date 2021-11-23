@@ -53,6 +53,6 @@ public class EchoClient {
 	}
 
 	public static void main(String[] args) throws Exception {
-		new EchoClient("localhost", 20000).start();
+		new EchoClient("192.168.21.120", 9999).start();
 	}
 }
