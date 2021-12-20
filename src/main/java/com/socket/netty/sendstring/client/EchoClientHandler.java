@@ -6,34 +6,34 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 
 public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
-	// 客户端连接服务器后被调用
-	@Override
-	public void channelActive(ChannelHandlerContext ctx) throws Exception {
-		System.out.println("客户端连接服务器，开始发送数据……");
-		byte[] req = "QUERY TIME ORDER".getBytes();//消息
-		ByteBuf firstMessage = Unpooled.buffer(req.length);//发送类
-		firstMessage.writeBytes(req);//发送
-		ctx.writeAndFlush(firstMessage);//flush
-	}
+    // 客户端连接服务器后被调用
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        System.out.println("客户端连接服务器，开始发送数据……");
+        byte[] req = "QUERY TIME ORDER".getBytes();//消息
+        ByteBuf firstMessage = Unpooled.buffer(req.length);//发送类
+        firstMessage.writeBytes(req);//发送
+        ctx.writeAndFlush(firstMessage);//flush
+    }
 
-	// • 从服务器接收到数据后调用(读取数据)
-	@Override
-	protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg)
-			throws Exception {
-		System.out.println("client 读取server数据..");
-		// 服务端返回消息后
-		byte[] req = new byte[msg.readableBytes()];
-		msg .readBytes(req);
-		String body = new String(req, "UTF-8");
-		System.out.println("服务端数据为 :" + body);
-	}
+    // • 从服务器接收到数据后调用(读取数据)
+    @Override
+    protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg)
+            throws Exception {
+        System.out.println("client 读取server数据..");
+        // 服务端返回消息后
+        byte[] req = new byte[msg.readableBytes()];
+        msg.readBytes(req);
+        String body = new String(req, "UTF-8");
+        System.out.println("服务端数据为 :" + body);
+    }
 
-	// • 发生异常时被调用
-	@Override
-	public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
-			throws Exception {
-		System.out.println("client exceptionCaught..");
-		// 释放资源
-		ctx.close();
-	}
+    // • 发生异常时被调用
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause)
+            throws Exception {
+        System.out.println("client exceptionCaught..");
+        // 释放资源
+        ctx.close();
+    }
 }

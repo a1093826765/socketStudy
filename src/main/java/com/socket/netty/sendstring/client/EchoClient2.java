@@ -19,12 +19,12 @@ import java.net.InetSocketAddress;
  * @author wilson
  *
  */
-public class EchoClient {
+public class EchoClient2 {
 
 	private final String host;
 	private final int port;
 
-	public EchoClient(String host, int port) {
+	public EchoClient2(String host, int port) {
 		this.host = host;
 		this.port = port;
 	}
@@ -43,7 +43,7 @@ public class EchoClient {
 								@Override
 								protected void initChannel(SocketChannel ch)
 										throws Exception {
-										ch.pipeline().addLast(new EchoClientHandler());//注册handler（可以注册多个handler）
+									ch.pipeline().addLast(new EchoClientHandler());//注册handler（可以注册多个handler）
 								}
 							});
 			// 链接服务器  .cync() --  在没有拿到结果之前，程序一直存在
@@ -55,6 +55,6 @@ public class EchoClient {
 	}
 
 	public static void main(String[] args) throws Exception {
-		new EchoClient("192.168.21.163", 7777).start();
+		new EchoClient2("localhost", 2000).start();
 	}
 }
