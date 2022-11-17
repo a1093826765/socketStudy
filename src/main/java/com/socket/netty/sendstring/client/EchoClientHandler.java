@@ -1,6 +1,8 @@
 package com.socket.netty.sendstring.client;
 
+import com.socket.util.BytesUtil;
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.ByteBufUtil;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -10,10 +12,12 @@ public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         System.out.println("客户端连接服务器，开始发送数据……");
-        byte[] req = "QUERY TIME ORDER".getBytes();//消息
+//        for(int i=0;i<=100;i++){
+        byte[] req = BytesUtil.hexToBytes("FFFF34303738653063333134313430613061393100000000000B0D3C0A1607E50C1614083736CFFFF");
         ByteBuf firstMessage = Unpooled.buffer(req.length);//发送类
         firstMessage.writeBytes(req);//发送
         ctx.writeAndFlush(firstMessage);//flush
+//        }
     }
 
     // • 从服务器接收到数据后调用(读取数据)

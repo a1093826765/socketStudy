@@ -55,6 +55,6 @@ public class EchoClient2 {
 	}
 
 	public static void main(String[] args) throws Exception {
-		new EchoClient2("localhost", 2000).start();
+		new EchoClient2("dev.tc-etc.cn", 7777).start();
 	}
 }
