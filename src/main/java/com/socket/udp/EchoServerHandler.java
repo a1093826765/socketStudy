@@ -18,7 +18,6 @@ import java.net.InetSocketAddress;
  */
 public class EchoServerHandler extends SimpleChannelInboundHandler<DatagramPacket> {
 
-    boolean flag = false;
     InetSocketAddress address1 = null;
     InetSocketAddress address2 = null;
 
