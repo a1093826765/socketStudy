@@ -13,10 +13,10 @@ import java.net.InetSocketAddress;
  *
  * @Description:
  * @Author: november
- * @CreateTime: 2022/11/17 5:18 下午
+ * @CreateTime: 2022/11/17 5:22 下午
  * @UpdateTIme:
  */
-public class EchoClientHandler1 extends SimpleChannelInboundHandler<DatagramPacket> {
+public class EchoClientHandler3 extends SimpleChannelInboundHandler<DatagramPacket> {
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, DatagramPacket datagramPacket) throws Exception {
         System.out.println("channelRead0");
@@ -40,19 +40,6 @@ public class EchoClientHandler1 extends SimpleChannelInboundHandler<DatagramPack
     }
 
     @Override
-    public void channelActive(ChannelHandlerContext ctx) throws Exception {
-        System.out.println("channelActive");
-        System.out.println("客户端向服务器发送自己的IP和PORT");
-        ctx.writeAndFlush(new DatagramPacket(
-                Unpooled.copiedBuffer("L".getBytes()),
-                new InetSocketAddress("192.168.0.78", 7402)));
-        ctx.writeAndFlush(new DatagramPacket(
-                Unpooled.copiedBuffer("M".getBytes()),
-                new InetSocketAddress("192.168.0.78", 7402)));
-        super.channelActive(ctx);
-    }
-
-    @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         System.out.println("channelRead");
         super.channelRead(ctx, msg);
@@ -62,6 +49,26 @@ public class EchoClientHandler1 extends SimpleChannelInboundHandler<DatagramPack
     public void channelWritabilityChanged(ChannelHandlerContext ctx) throws Exception {
         System.out.println("channelWritabilityChanged");
         super.channelWritabilityChanged(ctx);
+    }
+
+    /**
+     * Created by IntelliJ IDEA.
+     *
+     * @param
+     * @return
+     * @Description: 建立连接
+     * @author november
+     * @CreateTime: 2022/11/18 9:26 上午
+     * @UpdateTime:
+     */
+    @Override
+    public void channelActive(ChannelHandlerContext ctx) throws Exception {
+        System.out.println("channelActive");
+        System.out.println("客户端向服务器发送自己的IP和PORT");
+        ctx.writeAndFlush(new DatagramPacket(
+                Unpooled.copiedBuffer("F".getBytes()),
+                new InetSocketAddress("192.168.0.78", 7402)));
+        super.channelActive(ctx);
     }
 
     @Override
@@ -87,5 +94,4 @@ public class EchoClientHandler1 extends SimpleChannelInboundHandler<DatagramPack
         System.out.println("exceptionCaught");
         super.exceptionCaught(ctx, cause);
     }
-
 }

@@ -20,11 +20,11 @@ public class EchoServerHandler extends SimpleChannelInboundHandler<DatagramPacke
 
     InetSocketAddress address1 = null;
     InetSocketAddress address2 = null;
+    InetSocketAddress address3 = null;
 
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, DatagramPacket datagramPacket) throws Exception {
         System.out.println("channelRead0");
-        System.out.println(address1+"---"+address2);
         ByteBuf byteBuf = (ByteBuf) datagramPacket.copy().content();
         byte[] bytes = new byte[byteBuf.readableBytes()];
         byteBuf.readBytes(bytes);
@@ -38,19 +38,24 @@ public class EchoServerHandler extends SimpleChannelInboundHandler<DatagramPacke
             //保存到addr2中 并发送addr1
             address2 = datagramPacket.sender();
             System.out.println("R 命令， 保存到addr2中 ");
+        } else if (str.equalsIgnoreCase("F")) {
+            //保存到addr2中 并发送addr1
+            address3 = datagramPacket.sender();
+            System.out.println("F 命令， 保存到addr3中 ");
         } else if (str.equalsIgnoreCase("M")) {
             //addr1 -> addr2
-            String remot = "A " + address2.getAddress().toString().replace("/", "")
-                    + " " + address2.getPort();
+            String remot = "A " + address1.getAddress().toString().replace("/", "")
+                    + " " + address1.getPort();
             channelHandlerContext.writeAndFlush(new DatagramPacket(
                     Unpooled.copiedBuffer(remot.getBytes()), address2));
             //addr2 -> addr1
             remot = "A " + address1.getAddress().toString().replace("/", "")
                     + " " + address1.getPort();
             channelHandlerContext.writeAndFlush(new DatagramPacket(
-                    Unpooled.copiedBuffer(remot.getBytes()), address2));
+                    Unpooled.copiedBuffer(remot.getBytes()), address3));
             System.out.println("M 命令");
         }
+        System.out.println(address1+"---"+address2+"---"+address3);
     }
 
     @Override
