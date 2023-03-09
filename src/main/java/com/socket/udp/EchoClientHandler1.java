@@ -43,12 +43,18 @@ public class EchoClientHandler1 extends SimpleChannelInboundHandler<DatagramPack
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         System.out.println("channelActive");
         System.out.println("客户端向服务器发送自己的IP和PORT");
+//        ctx.writeAndFlush(new DatagramPacket(
+//                Unpooled.copiedBuffer("L".getBytes()),
+//                new InetSocketAddress("192.168.0.78", 7402)));
+//        ctx.writeAndFlush(new DatagramPacket(
+//                Unpooled.copiedBuffer("M".getBytes()),
+//                new InetSocketAddress("192.168.0.78", 7402)));
         ctx.writeAndFlush(new DatagramPacket(
-                Unpooled.copiedBuffer("L".getBytes()),
-                new InetSocketAddress("192.168.0.78", 7402)));
-        ctx.writeAndFlush(new DatagramPacket(
-                Unpooled.copiedBuffer("M".getBytes()),
-                new InetSocketAddress("192.168.0.78", 7402)));
+                Unpooled.copiedBuffer("test 123456".getBytes()),
+                new InetSocketAddress("192.168.0.200", 7402)));
+//        ctx.writeAndFlush(new DatagramPacket(
+//                Unpooled.copiedBuffer("test 123456 视频数据".getBytes()),
+//                new InetSocketAddress("8.134.71.158", 7402)));
         super.channelActive(ctx);
     }
 

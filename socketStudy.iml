@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
-  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_6">
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
     <content url="file://$MODULE_DIR$">
@@ -12,5 +12,15 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Maven: io.netty:netty-all:4.0.24.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty.incubator:netty-incubator-codec-native-quic:0.0.34.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty.incubator:netty-incubator-codec-classes-quic:0.0.34.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-common:4.1.85.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-buffer:4.1.85.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-codec:4.1.85.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-handler:4.1.85.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-resolver:4.1.85.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-transport-native-unix-common:4.1.85.Final" level="project" />
+    <orderEntry type="library" name="Maven: io.netty:netty-transport:4.1.85.Final" level="project" />
+    <orderEntry type="library" name="Maven: commons-codec:commons-codec:1.15" level="project" />
   </component>
 </module>
