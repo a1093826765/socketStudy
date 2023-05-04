@@ -68,10 +68,14 @@ public class EchoClientHandler3 extends SimpleChannelInboundHandler<DatagramPack
 //        ctx.writeAndFlush(new DatagramPacket(
 //                Unpooled.copiedBuffer("F".getBytes()),
 //                new InetSocketAddress("192.168.0.78", 7402)));
-        ctx.writeAndFlush(new DatagramPacket(
-                Unpooled.copiedBuffer("client 123456".getBytes()),
-                new InetSocketAddress("192.168.0.78", 7402)));
-        super.channelActive(ctx);
+        for (; ; ) {
+            for (int i = 0; i <= 10000; i++) {
+                ctx.writeAndFlush(new DatagramPacket(
+                        Unpooled.copiedBuffer(("3test " + i).getBytes()),
+                        new InetSocketAddress("192.168.0.78", 7402)));
+            }
+        }
+//        super.channelActive(ctx);
     }
 
     @Override
